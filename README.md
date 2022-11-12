@@ -5,7 +5,7 @@
 ⚠ <b>VPS PARA PAINEL WEB: https://www.avirahost.com.br/aff.php?aff=108 ⚠</b></br>
 
 ```
-apt install wget -y; bash <(wget -qO- https://github.com/JeanRocha91x/Pweb-Swit-T-Plus/raw/main/install/ubuinst.sh)
+apt install wget -y; bash <(wget -qO- https://github.com/JeanRocha91x/Painel-Swit-4G/raw/main/install/ubuinst.sh)
 ```
 </br>
 
@@ -16,7 +16,7 @@ apt install wget -y; bash <(wget -qO- https://github.com/JeanRocha91x/Pweb-Swit-
 
 # 𓊈𒆜 SINCRONIZAR NA VPS SSH! 𒆜𓊉
 ```
-apt install wget -y; bash <(wget -qO- https://github.com/JeanRocha91x/Pweb-Swit-T-Plus/raw/main/install/sincpainel.sh)
+apt install wget -y; bash <(wget -qO- https://github.com/JeanRocha91x/Painel-Swit-4G/raw/main/install/sincpainel.sh)
 ```
 
 # 𓊈𒆜 SCRIPT COM CHECKUSER CONECTA4G! 𒆜𓊉
