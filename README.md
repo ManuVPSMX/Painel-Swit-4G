@@ -4,6 +4,7 @@
 👉 <b>(UBUNTU 18)</b></br>
 ⚠ <b>VPS PARA PAINEL WEB: https://www.avirahost.com.br/aff.php?aff=108 ⚠</b></br>
 
+# 𓊈𒆜 COMANDO DE INSTALAÇÃO! 𒆜𓊉
 ```
 apt install wget -y; bash <(wget -qO- https://github.com/JeanRocha91x/Painel-Swit-4G/raw/main/install/ubuinst.sh)
 ```
