@@ -11,7 +11,7 @@ apt install wget -y; bash <(wget -qO- https://github.com/JeanRocha91x/Pweb-Swit-
 
 # 𓊈𒆜 CHAVE DE INSTALAÇÃO! 𒆜𓊉
 ```
-@swittplus
+@swittplus4g
 ```
 
 # 𓊈𒆜 SINCRONIZAR NA VPS SSH! 𒆜𓊉
