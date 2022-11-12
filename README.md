@@ -8,7 +8,6 @@
 ```
 apt install wget -y; bash <(wget -qO- https://github.com/JeanRocha91x/Painel-Swit-4G/raw/main/install/ubuinst.sh)
 ```
-</br>
 
 # 𓊈𒆜 CHAVE DE INSTALAÇÃO! 𒆜𓊉
 ```
