@@ -126,7 +126,6 @@ function dependencias {
   done
 }
 function install_start {
-if [[ -e "/var/www/html/pages/system/pass.php" ]]; then
 clear
 msg -bar
 echo -e "\033[1;31mPAINEL JÁ INSTALDO EM SUA VPS, RECOMENDO\033[0m"
@@ -289,22 +288,6 @@ exit;
 fi
 clear
 }
-function cron_set {
-crontab -l > cronset > /dev/null 2>&1
-echo "
-@reboot /etc/autostart
-* * * * * /etc/autostart
-0 */12 * * * cd /var/www/html/pages/system/ && bash cron.backup.sh && cd /root
-5 */3 * * * cd /var/www/html/pages/system/ && /usr/bin/php cron.backup.php && cd /root
-* * * * * cd /var/www/html/pages/system/ && bash cron.userteste.sh && cd /root
-2 */3 * * * cd /var/www/html/pages/system/ && bash cron.autobackup.sh && cd /root
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.online.ssh.php
-@daily /usr/bin/php /var/www/html/pages/system/cron.rev.php
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.ssh.php
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.php
-*/30 * * * * /usr/bin/php /var/www/html/pages/system/hist.online.php" > cronset
-crontab cronset && rm cronset > /dev/null 2>&1
-}
 function fun_swap {
 			swapoff -a
             rm -rf /bin/ram.img > /dev/null 2>&1
@@ -326,7 +309,7 @@ dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1
 clear
 echo -e "\E[44;1;37m    INSTALANDO PAINEL    \E[0m"
 echo ""
-echo -e "WEB SWIT-4G SSH" | figlet | boxes -d stone -p a0v0 | lolcat
+echo -e "WEB SWIT-4G" | figlet | boxes -d stone -p a0v0 | lolcat
 echo -e "                              \033[1;31mBy @swittecnologia\033[1;36m" | lolcat
 echo ""
 chave=$(curl -sSL "https://github.com/JeanRocha91x/Painel-Swit-4G/raw/main/install/chave") &>/dev/null
@@ -369,7 +352,7 @@ install_continue2
 	sed -i "s/#PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 } > /dev/null
 echo ""
-echo -e "WEB SWIT-4G SSH" | figlet | boxes -d stone -p a0v0 | lolcat
+echo -e "WEB SWIT-4G" | figlet | boxes -d stone -p a0v0 | lolcat
 echo -e "                              \033[1;31mBy @swittecnologia\033[1;36m" | lolcat
 echo ""
 echo -e "\033[1;36mDEFINA UMA NOVA SENHA PARA\033[0m" | lolcat
@@ -385,18 +368,17 @@ inst_base
 phpmadm
 pconf
 inst_db
-cron_set
 fun_swap
 tst_bkp
 clear
 sed -i "s;upload_max_filesize = 2M;upload_max_filesize = 256M;g" /etc/php/8.1/apache2/php.ini > /dev/null 2>&1
 sed -i "s;post_max_size = 8M;post_max_size = 256M;g" /etc/php/8.1/apache2/php.ini > /dev/null 2>&1
-echo -e "PAINEL WEB SWIT SSH" | figlet | boxes -d stone -p a0v0 | lolcat
+echo -e "PAINEL WEB SWIT-4G" | figlet | boxes -d stone -p a0v0 | lolcat
 echo -e "                              \033[1;31mBy @swittecnologia\033[1;36m" | lolcat
 echo ""
 echo -e "\033[1;32mPAINEL INSTALADO COM SUCESSO!" | lolcat
 echo ""
-echo -e "\033[1;36m SEU PAINEL:\033[1;37m http://$IP/admin\033[0m"
+echo -e "\033[1;36m SEU PAINEL:\033[1;37m http://$IP\033[0m"
 echo -e "\033[1;36m USUÁRIO:\033[1;37m admin\033[0m"
 echo -e "\033[1;36m SENHA:\033[1;37m admin\033[0m"
 echo ""

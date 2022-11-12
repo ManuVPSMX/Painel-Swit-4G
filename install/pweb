@@ -293,21 +293,7 @@ sed -i "s;1020;$senha;g" /var/www/html/config/config.php > /dev/null 2>&1
 sleep 2
 fi
 ##################################
-clear
-crontab -l > cronset > /dev/null 2>&1
-echo "
-@reboot /etc/autostart
-* * * * * /etc/autostart
-0 */12 * * * cd /var/www/html/pages/system/ && bash cron.backup.sh && cd /root
-5 */3 * * * cd /var/www/html/pages/system/ && /usr/bin/php cron.backup.php && cd /root
-* * * * * cd /var/www/html/pages/system/ && bash cron.userteste.sh && cd /root
-2 */3 * * * cd /var/www/html/pages/system/ && bash cron.autobackup.sh && cd /root
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.online.ssh.php
-@daily /usr/bin/php /var/www/html/pages/system/cron.rev.php
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.ssh.php
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.php
-*/30 * * * * /usr/bin/php /var/www/html/pages/system/hist.online.php" > cronset
-crontab cronset && rm cronset > /dev/null 2>&1
+
 ##################################
 clear
 cd || exit
@@ -325,7 +311,7 @@ echo -e "\E[44;1;32m    PAINELWEB ATUALIZADO COM SUCESSO     \E[0m"
 echo ""
 echo -e "PAINEL WEB SWIT-4G" | figlet
 echo ""
-echo -e "\033[1;36m PAINEL WEB DIGITE ESSE IP NO NAVEGADOR:\033[1;37m http://$IP/admin\033[0m"
+echo -e "\033[1;36m PAINEL WEB DIGITE ESSE IP NO NAVEGADOR:\033[1;37m http://$IP\033[0m"
 echo ""
 echo -e "\033[1;36m LOJA DE APPS:\033[1;37m http://$IP/apps\033[0m"
 echo ""
@@ -351,7 +337,7 @@ echo ""
 echo -ne "\033[1;32mDE UM ENTER PRA CONTINUAR...\033[0m"; read -r
 bzip2 /root/restaurar/sshplus.sql > /dev/null 2>&1
 
-[[ ! -e /var/www/html/pages/system/pass.php ]] && {
+[[ ! -e /var/www/html/conexao.php ]] && {
 echo -e "\n\033[1;31mO PAINEL NÃO ESTÁ INSTALADO!\033[0m"
 echo ""
 sleep 3
@@ -375,7 +361,7 @@ pweb
 exit;
 }
 
-passdb=$(cut -d"'" -f2 /var/www/html/pages/system/pass.php)
+passdb=$(cut -d"'" -f2 /var/www/html/conexao.php)
 [[ $(mysql -h localhost -u root -p$passdb -e "show databases" | grep -wc sshplus) == '0' ]] && {
 echo -e "\n\033[1;31mSEU PAINELWEB NÃO É COMPATÍVEL!\033[0m"
 echo ""
