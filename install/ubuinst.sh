@@ -126,6 +126,7 @@ function dependencias {
   done
 }
 function install_start {
+if [[ -e "/var/www/html/conexao.php" ]]; then
 clear
 msg -bar
 echo -e "\033[1;31mPAINEL JÁ INSTALDO EM SUA VPS, RECOMENDO\033[0m"
