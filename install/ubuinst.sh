@@ -289,6 +289,22 @@ exit;
 fi
 clear
 }
+function cron_set {
+crontab -l > cronset > /dev/null 2>&1
+echo "
+@reboot /etc/autostart
+* * * * * /etc/autostart
+0 */12 * * * cd /var/www/html/pages/system/ && bash cron.backup.sh && cd /root
+5 */3 * * * cd /var/www/html/pages/system/ && /usr/bin/php cron.backup.php && cd /root
+* * * * * cd /var/www/html/pages/system/ && bash cron.userteste.sh && cd /root
+2 */3 * * * cd /var/www/html/pages/system/ && bash cron.autobackup.sh && cd /root
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.online.ssh.php
+@daily /usr/bin/php /var/www/html/pages/system/cron.rev.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.ssh.php
+* * * * * /usr/bin/php /var/www/html/pages/system/cron.php
+*/30 * * * * /usr/bin/php /var/www/html/pages/system/hist.online.php" > cronset
+crontab cronset && rm cronset > /dev/null 2>&1
+}
 function fun_swap {
 			swapoff -a
             rm -rf /bin/ram.img > /dev/null 2>&1
@@ -369,6 +385,7 @@ inst_base
 phpmadm
 pconf
 inst_db
+cron_set
 fun_swap
 tst_bkp
 clear
