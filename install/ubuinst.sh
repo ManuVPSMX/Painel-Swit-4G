@@ -271,9 +271,7 @@ function pconf {
 sed -i "s/1020/$pwdroot/" /var/www/html/conexao.php > /dev/null 2>&1
 sleep 1
 }
-function inst_db { 
-sed -i "s;dominio;$IP;g" /var/www/html/bdgestorssh.sql > /dev/null 2>&1
-sleep 1
+function inst_db {
 if [[ -e "/var/www/html/bdgestorssh.sql" ]]; then
     mysql -h localhost -u root -p"$pwdroot" --default_character_set utf8 net < /var/www/html/bdgestorssh.sql > /dev/null 2>&1
     rm /var/www/html/bdgestorssh.sql > /dev/null 2>&1
