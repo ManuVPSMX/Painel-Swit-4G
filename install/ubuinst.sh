@@ -229,8 +229,8 @@ mysql -u root -p"$pwdroot" -e "FLUSH PRIVILEGES" > /dev/null 2>&1
 mysql -u root -p"$pwdroot" -e "DELETE FROM mysql.user WHERE User=''" > /dev/null 2>&1
 mysql -u root -p"$pwdroot" -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\_%'" > /dev/null 2>&1
 mysql -u root -p"$pwdroot" -e "FLUSH PRIVILEGES" > /dev/null 2>&1
-mysql -u root -p"$pwdroot" -e "CREATE DATABASE net;" > /dev/null 2>&1
-mysql -u root -p"$pwdroot" -e "GRANT ALL PRIVILEGES ON net.* To 'root'@'localhost' IDENTIFIED BY '$pwdroot';" > /dev/null 2>&1
+mysql -u root -p"$pwdroot" -e "CREATE DATABASE sshplus;" > /dev/null 2>&1
+mysql -u root -p"$pwdroot" -e "GRANT ALL PRIVILEGES ON sshplus.* To 'root'@'localhost' IDENTIFIED BY '$pwdroot';" > /dev/null 2>&1
 mysql -u root -p"$pwdroot" -e "FLUSH PRIVILEGES" > /dev/null 2>&1
 echo '[mysqld]
 max_connections = 1000' >> /etc/mysql/my.cnf
@@ -268,12 +268,15 @@ cd /root || exit
 }
 
 function pconf { 
-sed -i "s/1020/$pwdroot/" /var/www/html/conexao.php > /dev/null 2>&1
-sleep 1
+sed "s/1020/$pwdroot/" /var/www/html/conexao.php > /tmp/pass
+mv /tmp/pass /var/www/html/conexao.php
+
 }
-function inst_db {
+function inst_db { 
+sed -i "s;dominio;$IP;g" /var/www/html/bdgestorssh.sql > /dev/null 2>&1
+sleep 1
 if [[ -e "/var/www/html/bdgestorssh.sql" ]]; then
-    mysql -h localhost -u root -p"$pwdroot" --default_character_set utf8 net < /var/www/html/bdgestorssh.sql > /dev/null 2>&1
+    mysql -h localhost -u root -p"$pwdroot" --default_character_set utf8 sshplus < /var/www/html/bdgestorssh.sql > /dev/null 2>&1
     rm /var/www/html/bdgestorssh.sql > /dev/null 2>&1
 else
     clear
@@ -292,15 +295,7 @@ crontab -l > cronset > /dev/null 2>&1
 echo "
 @reboot /etc/autostart
 * * * * * /etc/autostart
-0 */12 * * * cd /var/www/html/pages/system/ && bash cron.backup.sh && cd /root
-5 */3 * * * cd /var/www/html/pages/system/ && /usr/bin/php cron.backup.php && cd /root
-* * * * * cd /var/www/html/pages/system/ && bash cron.userteste.sh && cd /root
-2 */3 * * * cd /var/www/html/pages/system/ && bash cron.autobackup.sh && cd /root
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.online.ssh.php
-@daily /usr/bin/php /var/www/html/pages/system/cron.rev.php
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.ssh.php
-* * * * * /usr/bin/php /var/www/html/pages/system/cron.php
-*/30 * * * * /usr/bin/php /var/www/html/pages/system/hist.online.php" > cronset
+2 */3 * * * cd /var/www/html/cronphp && bash cron.autobackup.sh && cd /root" > cronset
 crontab cronset && rm cronset > /dev/null 2>&1
 }
 function fun_swap {
@@ -314,7 +309,10 @@ function fun_swap {
             echo '/bin/ram.img none swap sw 0 0' | tee -a /etc/fstab > /dev/null 2>&1
             sleep 2
 }
-
+function tst_bkp {
+cd || exit
+sed -i "s;1020;$pwdroot;g" /var/www/html/config/config.php > /dev/null 2>&1
+}
 clear
 install_start
 IP=$(wget -qO- ipv4.icanhazip.com)
@@ -324,7 +322,7 @@ dpkg-reconfigure --frontend noninteractive tzdata > /dev/null 2>&1
 clear
 echo -e "\E[44;1;37m    INSTALANDO PAINEL    \E[0m"
 echo ""
-echo -e "WEB SWIT-4G" | figlet | boxes -d stone -p a0v0 | lolcat
+echo -e "WEB SWIT 4G" | figlet | boxes -d stone -p a0v0 | lolcat
 echo -e "                              \033[1;31mBy @swittecnologia\033[1;36m" | lolcat
 echo ""
 chave=$(curl -sSL "https://github.com/JeanRocha91x/Painel-Swit-4G/raw/main/install/chave") &>/dev/null
@@ -367,7 +365,7 @@ install_continue2
 	sed -i "s/#PasswordAuthentication no/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 } > /dev/null
 echo ""
-echo -e "WEB SWIT-4G" | figlet | boxes -d stone -p a0v0 | lolcat
+echo -e "WEB SWIT 4G" | figlet | boxes -d stone -p a0v0 | lolcat
 echo -e "                              \033[1;31mBy @swittecnologia\033[1;36m" | lolcat
 echo ""
 echo -e "\033[1;36mDEFINA UMA NOVA SENHA PARA\033[0m" | lolcat
@@ -389,7 +387,7 @@ tst_bkp
 clear
 sed -i "s;upload_max_filesize = 2M;upload_max_filesize = 256M;g" /etc/php/8.1/apache2/php.ini > /dev/null 2>&1
 sed -i "s;post_max_size = 8M;post_max_size = 256M;g" /etc/php/8.1/apache2/php.ini > /dev/null 2>&1
-echo -e "PAINEL WEB SWIT-4G" | figlet | boxes -d stone -p a0v0 | lolcat
+echo -e "PAINEL WEB SWIT SSH" | figlet | boxes -d stone -p a0v0 | lolcat
 echo -e "                              \033[1;31mBy @swittecnologia\033[1;36m" | lolcat
 echo ""
 echo -e "\033[1;32mPAINEL INSTALADO COM SUCESSO!" | lolcat
