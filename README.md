@@ -1,4 +1,4 @@
-#  𓊈𒆜 PAINEL VIP SWIT-4G 𒆜𓊉
+#  𓊈𒆜 PAINEL VIP SWIT-4G 𒆜𓊉 kldsjflkjsdlkjflksdjlf
 
 ⚠ <b>SISTEMA SUPORTADO:</b></br>
 👉 <b>(UBUNTU 18)</b></br>
