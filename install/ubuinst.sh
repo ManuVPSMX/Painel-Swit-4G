@@ -387,7 +387,7 @@ tst_bkp
 clear
 sed -i "s;upload_max_filesize = 2M;upload_max_filesize = 256M;g" /etc/php/8.1/apache2/php.ini > /dev/null 2>&1
 sed -i "s;post_max_size = 8M;post_max_size = 256M;g" /etc/php/8.1/apache2/php.ini > /dev/null 2>&1
-echo -e "PAINEL WEB SWIT SSH" | figlet | boxes -d stone -p a0v0 | lolcat
+echo -e "PAINEL WEB SWIT 4G" | figlet | boxes -d stone -p a0v0 | lolcat
 echo -e "                              \033[1;31mBy @swittecnologia\033[1;36m" | lolcat
 echo ""
 echo -e "\033[1;32mPAINEL INSTALADO COM SUCESSO!" | lolcat
