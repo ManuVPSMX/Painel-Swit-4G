@@ -248,14 +248,14 @@ cd /var/www/html || exit
 wget https://github.com/JeanRocha91x/Painel-Swit-4G/raw/main/install/gestorssh.zip > /dev/null 2>&1
 apt-get install unzip > /dev/null 2>&1
 unzip gestorssh.zip > /dev/null 2>&1
-chmod 0777 img
-cd img
-chmod 0777 icone perfil icons
 (echo yes; echo yes; echo yes; echo yes) | composer install > /dev/null 2>&1
 (echo yes; echo yes; echo yes; echo yes) | composer require phpseclib/phpseclib:~2.0 > /dev/null 2>&1
 ln -s /usr/share/phpmyadmin/ /var/www/html > /dev/null 2>&1
 chmod 777 -R /var/www/html > /dev/null 2>&1
 rm gestorssh.zip index.html > /dev/null 2>&1
+chmod 0777 img
+cd img
+chmod 0777 icone perfil icons
 systemctl restart mysql
 clear
 }
