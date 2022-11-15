@@ -154,13 +154,13 @@ else
   msg -bar
   apt-get install software-properties-common
   apt-get update -y
+  apt-get upgrade -y
   apt-get install figlet -y
   apt-get install figlet boxes -y
   apt-get install lolcat -y
   apt-get install curl -y
   add-apt-repository ppa:ondrej/php -y
   apt-get update -y
-  apt-get upgrade -y
   clear
   msg -bar
   echo -e "\e[1;97m   \e[5m\033[1;100mATUALIZAÇÃO DO SISTEMA CONCLUÍDA COM SUCESSO!\033[1;37m"
@@ -240,6 +240,7 @@ phpenmod mcrypt > /dev/null 2>&1
 systemctl restart apache2 > /dev/null 2>&1
 ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin > /dev/null 2>&1
 apt-get install php8.1-ssh2 -y > /dev/null 2>&1
+apt-get install libssh2-1-dev libssh2-php -y > /dev/null 2>&1
 php -m | grep ssh2 > /dev/null 2>&1
 curl -sS https://getcomposer.org/installer | php > /dev/null 2>&1
 mv composer.phar /usr/local/bin/composer > /dev/null 2>&1
