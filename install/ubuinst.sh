@@ -152,15 +152,15 @@ else
   msg -bar
   echo -e "\e[1;97m           \e[5m\033[1;100m   ATUALIZAÇÃO DO SISTEMA   \033[1;37m"
   msg -bar
-  apt install software-properties-common
-  apt update -y
-  apt install figlet -y
-  apt install figlet boxes -y
-  apt install lolcat -y
-  apt install curl -y
+  apt-get install software-properties-common
+  apt-get update -y
+  apt-get install figlet -y
+  apt-get install figlet boxes -y
+  apt-get install lolcat -y
+  apt-get install curl -y
   add-apt-repository ppa:ondrej/php -y
-  apt update -y
-  apt upgrade -y
+  apt-get update -y
+  apt-get upgrade -y
   clear
   msg -bar
   echo -e "\e[1;97m   \e[5m\033[1;100mATUALIZAÇÃO DO SISTEMA CONCLUÍDA COM SUCESSO!\033[1;37m"
@@ -216,9 +216,10 @@ clear
 }
 function inst_base {
     echo -e "\n\033[1;36mINSTALANDO O APACHE2 \033[1;33mAGUARDE...\033[0m"
-apt install apache2 -y > /dev/null 2>&1
-apt install dirmngr apt-transport-https -y > /dev/null 2>&1
-apt install php8.1 libapache2-mod-php8.1 php8.1-xml php8.1-mcrypt php8.1-curl php8.1-mbstring php8.1-cli -y > /dev/null 2>&1
+apt-get install apache2 -y > /dev/null 2>&1
+apt-get install dirmngr apt-transport-https -y > /dev/null 2>&1
+apt-get install php8.1 libapache2-mod-php8.1 php8.1-xml php8.1-mcrypt php8.1-curl php8.1-mbstring php8.1-cli -y > /dev/null 2>&1
+apt-get install cron curl unzip -y > /dev/null 2>&1
 systemctl restart apache2 > /dev/null 2>&1
 apt-get install mariadb-server -y > /dev/null 2>&1
 cd || exit
@@ -238,7 +239,7 @@ apt install php8.1-mysql -y > /dev/null 2>&1
 phpenmod mcrypt > /dev/null 2>&1
 systemctl restart apache2 > /dev/null 2>&1
 ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin > /dev/null 2>&1
-apt install php8.1-ssh2 -y > /dev/null 2>&1
+apt-get install php8.1-ssh2 -y > /dev/null 2>&1
 php -m | grep ssh2 > /dev/null 2>&1
 curl -sS https://getcomposer.org/installer | php > /dev/null 2>&1
 mv composer.phar /usr/local/bin/composer > /dev/null 2>&1
@@ -247,6 +248,9 @@ cd /var/www/html || exit
 wget https://github.com/JeanRocha91x/Painel-Swit-4G/raw/main/install/gestorssh.zip > /dev/null 2>&1
 apt-get install unzip > /dev/null 2>&1
 unzip gestorssh.zip > /dev/null 2>&1
+chmod 0777 img
+cd img
+chmod 0777 icone perfil icons
 (echo yes; echo yes; echo yes; echo yes) | composer install > /dev/null 2>&1
 (echo yes; echo yes; echo yes; echo yes) | composer require phpseclib/phpseclib:~2.0 > /dev/null 2>&1
 ln -s /usr/share/phpmyadmin/ /var/www/html > /dev/null 2>&1
