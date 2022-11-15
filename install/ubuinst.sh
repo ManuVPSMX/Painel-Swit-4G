@@ -242,6 +242,7 @@ ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin > /dev/null 2>&1
 apt-get install php8.1-ssh2 -y > /dev/null 2>&1
 apt-get install libssh2-1-dev libssh2-php -y > /dev/null 2>&1
 php -m | grep ssh2 > /dev/null 2>&1
+apt-get install php5-curl -y > /dev/null 2>&1
 curl -sS https://getcomposer.org/installer | php > /dev/null 2>&1
 mv composer.phar /usr/local/bin/composer > /dev/null 2>&1
 chmod +x /usr/local/bin/composer > /dev/null 2>&1
