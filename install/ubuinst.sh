@@ -217,7 +217,7 @@ clear
 function inst_base {
 echo -e "\n\033[1;36mINSTALANDO O APACHE2 \033[1;33mAGUARDE...\033[0m"
 apt-get install apache2 -y > /dev/null 2>&1
-apt-get install php5 libapache2-mod-php5 php5-mcrypt -y > /dev/null 2>&1
+apt-get install php5 libapache2-mod-php5 php5-mysql -y > /dev/null 2>&1
 apt-get install dirmngr apt-transport-https -y > /dev/null 2>&1
 apt-get install php7.3-cli php7.3-fpm php7.3-json php7.3-pdo php7.3-zip php7.3-gd  php7.3-mbstring php7.3-curl php7.3-xml php7.3-bcmath php7.3-json -y > /dev/null 2>&1
 apt-get install cron curl unzip -y > /dev/null 2>&1
