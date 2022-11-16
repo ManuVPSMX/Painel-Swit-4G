@@ -218,7 +218,7 @@ function inst_base {
 echo -e "\n\033[1;36mINSTALANDO O APACHE2 \033[1;33mAGUARDE...\033[0m"
 apt-get install apache2 -y > /dev/null 2>&1
 apt-get install dirmngr apt-transport-https -y > /dev/null 2>&1
-apt-get install php7.3 libapache2-mod-php7.3 php7.3-xml php7.3-mcrypt php7.3-curl php7.3-mbstring php7.3-cli -y > /dev/null 2>&1
+apt-get install php5 libapache2-mod-php5 php5-mcrypt -y > /dev/null 2>&1
 apt-get install cron curl unzip -y > /dev/null 2>&1
 systemctl restart apache2 > /dev/null 2>&1
 apt-get install mariadb-server -y > /dev/null 2>&1
@@ -235,11 +235,11 @@ mysql -u root -p"$pwdroot" -e "GRANT ALL PRIVILEGES ON sshplus.* To 'root'@'loca
 mysql -u root -p"$pwdroot" -e "FLUSH PRIVILEGES" > /dev/null 2>&1
 echo '[mysqld]
 max_connections = 1000' >> /etc/mysql/my.cnf
-apt install php7.3-mysql -y > /dev/null 2>&1
-phpenmod mcrypt > /dev/null 2>&1
+apt install php5.5-mysql -y > /dev/null 2>&1
+php5enmod mcrypt > /dev/null 2>&1
 systemctl restart apache2 > /dev/null 2>&1
 ln -s /usr/share/phpmyadmin /var/www/html/phpmyadmin > /dev/null 2>&1
-apt-get install php7.3-ssh2 -y > /dev/null 2>&1
+apt-get install php5.5-ssh2 -y > /dev/null 2>&1
 apt-get install libssh2-1-dev libssh2-php -y > /dev/null 2>&1
 php -m | grep ssh2 > /dev/null 2>&1
 apt-get install php5-curl -y > /dev/null 2>&1
